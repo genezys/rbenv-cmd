@@ -34,6 +34,11 @@
 	if exist "%RUBY_PATH%\bin\%~n0.exe" set SCRIPT="%RUBY_PATH%\bin\%~n0.exe"
 )
 
-
+:: Save current code page
+@ for /f "usebackq tokens=2 delims=:" %%i in (`chcp`) do @ set CURRENTCP=%%i
+:: Change current code page to 1252 as it is expected by Ruby
+@ chcp 1252 > NUL
 :: Call the good Ruby
 @ call %SCRIPT% %*
+:: Restore old code page
+@ chcp %CURRENTCP% > NUL
