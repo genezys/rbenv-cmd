@@ -30,7 +30,7 @@
 	set SCRIPT="!RUBY_PATH!\bin\jruby.exe" -S "%~n0"
 	if exist "!RUBY_PATH!\bin\j%~n0.exe" set SCRIPT="!RUBY_PATH!\bin\j%~n0.exe"
 ) else (
-	set SCRIPT="%RUBY_PATH%\bin\%~n0.bat"
+	set SCRIPT="%RUBY_PATH%\bin\ruby.exe" "%RUBY_PATH%\bin\%~n0"
 	if exist "%RUBY_PATH%\bin\%~n0.exe" set SCRIPT="%RUBY_PATH%\bin\%~n0.exe"
 )
 
