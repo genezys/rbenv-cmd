@@ -3,6 +3,7 @@
 
 @ set COMMAND=%~1
 
+@ set PARAMS=
 @ set SkipCount=1
 @ for %%i in (%*) do @(
 	if !SkipCount! leq 0 ( set PARAMS=!PARAMS! %%i ) else ( set /a SkipCount-=1 )
@@ -17,7 +18,6 @@
 @ if not exist "%RBENV_ROOT%\libexec\rbenv_%COMMAND%.bat" goto CommandNotFound
 
 :: Call COMMAND
-@ shift
 @ call "%RBENV_ROOT%\libexec\rbenv_%COMMAND%.bat" %PARAMS%
 
 @ exit /b 0
@@ -27,6 +27,12 @@
 @ echo(
 @ echo(Commands:
 @ echo(
+@ echo(  add       Add a new version of Ruby to be managed by rbenv
+@ echo(  remove    Remove a version of Ruby already managed by rbenv
+@ echo(  versions  List all versions managed by rbenv
+@ echo(  version   Show the current Ruby version used by rbenv
+@ echo(  global    Show or change the global Ruby version used by rbenv
+@ echo(  exec      Execute a command with the current Ruby version
 @ echo(  shim      Create a new shim script to be used by rbenv
 @ exit /b 1
 

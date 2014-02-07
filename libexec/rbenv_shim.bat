@@ -1,10 +1,16 @@
 :: Manually create a new shim by hardlinking the original shim "ruby.bat"
-@ setlocal
+@ setlocal EnableDelayedExpansion
 
+@ call "%~dp0common_vars.bat"
 @ set SHIM_NAME=%1
+
+:: Enter shim name interactively if not from command line
 @ if not defined SHIM_NAME (
 	set /p SHIM_NAME=Enter shim name:
 )
 
-@ mklink /h "%~dp0..\shims\%SHIM_NAME%.bat" "%~dp0..\shims\ruby.bat" > NUL
+:: Create shim by hard linking the default shim
+@ mklink /h "%RBENV_SHIMS%\%SHIM_NAME%.bat" "%RBENV_SHIMS%\ruby.bat" > NUL
 @ echo Created shim for "%SHIM_NAME%"
+
+@ exit /b 0
