@@ -4,7 +4,7 @@
 @ call "%~dp0common_vars.bat"
 
 :: Retrieve current Ruby version
-@ for /f "usebackq" %%i in (`%RBENV_ROOT%\libexec\rbenv_version.bat`) do @ set RUBY_VERSION=%%i
+@ for /f "usebackq tokens=*" %%i in (`%RBENV_ROOT%\libexec\rbenv_version.bat`) do @ set RUBY_VERSION=%%i
 @ if not defined RUBY_VERSION goto RubyVersionNotFound
 
 :: Compute path of current RUBY_VERSION

@@ -12,7 +12,7 @@
 @ if not defined RUBY_BIN goto :InvalidRubyPath
 
 :: Try to detect the Ruby identifier
-@ for /f usebackq %%i in (`call "%RUBY_BIN%" "%RBENV_ROOT%\libexec\ruby_version.rb"`) do @ set RUBY_VERSION=%%i
+@ for /f "usebackq tokens=*" %%i in (`call "%RUBY_BIN%" "%RBENV_ROOT%\libexec\ruby_version.rb"`) do @ set RUBY_VERSION=%%i
 @ if not defined RUBY_VERSION goto UnknownRuby
 @ if "%RUBY_VERSION%" == "" goto UnknownRuby
 @ echo Detected Ruby version "%RUBY_VERSION%"
