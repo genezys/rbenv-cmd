@@ -3,12 +3,14 @@
 
 @ call "%~dp0common_vars.bat"
 
-@ for /f "usebackq" %%i in (`%RBENV_ROOT%\libexec\rbenv_version.bat`) do @ set RUBY_VERSION=%%i
+:: Ask for reason first or RUBY_VERSION will already be defined
+@ for /f "usebackq tokens=*" %%i in (`call "%RBENV_ROOT%\libexec\rbenv_version.bat" --reason`) do @ set REASON=%%i
+@ for /f "usebackq tokens=*" %%i in (`call "%RBENV_ROOT%\libexec\rbenv_version.bat" --bare`) do @ set RUBY_VERSION=%%i
 
 :: Check that version is not already managed
 @ for /f "tokens=1 delims=|" %%i in (%RBENV_VERSIONS%) do @(
 	if "%%i" == "%RUBY_VERSION%" (
-		echo( * %%i
+		echo( * %%i ^(%REASON%^)
 	) else (
 		echo(   %%i
 	)
