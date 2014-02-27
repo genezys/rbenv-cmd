@@ -1,7 +1,7 @@
 :: Remove a Ruby version from rbenv
 @ setlocal EnableDelayedExpansion
 
-@ call "%~dp0common_vars.bat"
+@ call "%~dp0common_vars.cmd"
 @ set RUBY_VERSION=%~1
 
 @ if not defined RUBY_VERSION goto Usage

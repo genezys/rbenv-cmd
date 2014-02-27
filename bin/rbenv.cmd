@@ -15,10 +15,10 @@
 @ if not defined COMMAND goto Usage
 
 :: Check that COMMAND exists
-@ if not exist "%RBENV_ROOT%\libexec\rbenv_%COMMAND%.bat" goto CommandNotFound
+@ if not exist "%RBENV_ROOT%\libexec\rbenv_%COMMAND%.cmd" goto CommandNotFound
 
 :: Call COMMAND
-@ call "%RBENV_ROOT%\libexec\rbenv_%COMMAND%.bat" %PARAMS%
+@ call "%RBENV_ROOT%\libexec\rbenv_%COMMAND%.cmd" %PARAMS%
 
 @ exit /b 0
 

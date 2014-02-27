@@ -1,10 +1,10 @@
 :: Execute a Ruby command with the current version
 @ setlocal EnableDelayedExpansion
 
-@ call "%~dp0common_vars.bat"
+@ call "%~dp0common_vars.cmd"
 
 :: Retrieve current Ruby version
-@ for /f "usebackq tokens=*" %%i in (`%RBENV_ROOT%\libexec\rbenv_version.bat`) do @ set RUBY_VERSION=%%i
+@ for /f "usebackq tokens=*" %%i in (`%RBENV_ROOT%\libexec\rbenv_version.cmd`) do @ set RUBY_VERSION=%%i
 @ if not defined RUBY_VERSION goto RubyVersionNotFound
 
 :: Compute path of current RUBY_VERSION

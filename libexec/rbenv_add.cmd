@@ -1,7 +1,7 @@
 :: Add a new Ruby version to rbenv
 @ setlocal EnableDelayedExpansion
 
-@ call "%~dp0common_vars.bat"
+@ call "%~dp0common_vars.cmd"
 @ set RUBY_PATH=%~f1
 
 @ if not defined RUBY_PATH goto Usage

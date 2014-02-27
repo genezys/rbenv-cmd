@@ -1,7 +1,7 @@
 :: Get or set the global Ruby version
 @ setlocal EnableDelayedExpansion
 
-@ call "%~dp0common_vars.bat"
+@ call "%~dp0common_vars.cmd"
 @ set RUBY_VERSION=%~1
 
 @ if not defined RUBY_VERSION goto ReadGlobalVersion else goto WriteGlobalVersion
