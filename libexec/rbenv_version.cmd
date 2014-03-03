@@ -4,8 +4,9 @@
 @ call "%~dp0common_vars.cmd"
 
 :: Use environment variable if it exists
-@ if defined RUBY_VERSION (
-	set REASON=from environment variable RUBY_VERSION
+@ if defined RBENV_VERSION (
+	set RUBY_VERSION=%RBENV_VERSION%
+	set REASON=from environment variable RBENV_VERSION
 	goto RubyVersionFound
 )
 
