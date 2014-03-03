@@ -32,7 +32,7 @@
 @ echo(  version   Show the current Ruby version used by rbenv
 @ echo(  global    Show or change the global Ruby version used by rbenv
 @ echo(  exec      Execute a command with the current Ruby version
-@ echo(  shim      Create a new shim script to be used by rbenv
+@ echo(  rehash    Create shims for all scripts available in managed Ruby versions
 @ exit /b 1
 
 :CommandNotFound
