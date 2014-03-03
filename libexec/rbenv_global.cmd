@@ -14,7 +14,7 @@
 
 :: Save global version in rbenv configuration
 @ echo %RUBY_VERSION%> "%RBENV_GLOBAL%"
-@ echo(Ruby "%RUBY_VERSION%" set as global
+@ echo(Ruby %RUBY_VERSION% set as global
 
 @ exit /b 0
 
@@ -36,5 +36,5 @@
 
 
 :NotFound
-@ echo(Ruby "%RUBY_VERSION%" is not a version managed by rbenv.
+@ echo(Ruby %RUBY_VERSION% is not a version managed by rbenv.
 @ exit /b 1

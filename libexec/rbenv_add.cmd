@@ -39,16 +39,16 @@
 @ exit /b 1
 
 :UnknownRuby
-@ echo("%RUBY_PATH%" contains a version of Ruby that could not be identified.
+@ echo('%RUBY_PATH%' contains a version of Ruby that could not be identified.
 @ echo(Please check that rbenv\libexec\ruby_version.rb runs successfuly.
 @ exit /b 1
 
 :InvalidRubyPath
-@ echo("%RUBY_PATH%" does not appear to be a valid Ruby path.
+@ echo('%RUBY_PATH%' does not appear to be a valid Ruby path.
 @ echo(It does not contain a bin\ruby executable to be run.
 @ exit /b 1
 
 :AlreadyAdded
-@ echo("%RUBY_VERSION%" already exists in rbenv list. Remove it first with rbenv_remove_version
+@ echo('%RUBY_VERSION%' already exists in rbenv list. Remove it first with rbenv remove
 @ exit /b 1
 

@@ -14,7 +14,7 @@
 :SearchForRubyVersion
 @ if exist "%DIRECTORY%\.ruby-version" (
 	set /p RUBY_VERSION= < "%DIRECTORY%\.ruby-version"
-	set REASON=from "%DIRECTORY%\.ruby-version"
+	set REASON=from %DIRECTORY%\.ruby-version
 	goto RubyVersionFound
 ) else (
 	pushd "%DIRECTORY%\.."
@@ -32,8 +32,7 @@
 
 :RubyVersionFound
 :: Check that version is already managed
-@ if not exist "%RBENV_VERSIONS%" goto NotFound
-@ findstr /b "%RUBY_VERSION%|" "%RBENV_VERSIONS%" > NUL || goto NotFound
+@ if not exist "%RBENV_VERSIONS%\%RUBY_VERSION%" goto NotFound
 
 :: Print version and/or reason
 @ if "%~1" == "--bare" (
@@ -48,5 +47,5 @@
 
 
 :NotFound
-@ echo(Ruby "%RUBY_VERSION%" is not a version managed by rbenv.
+@ echo(Ruby %RUBY_VERSION% is not a version managed by rbenv.
 @ exit /b 1
