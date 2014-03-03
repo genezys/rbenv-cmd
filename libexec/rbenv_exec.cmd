@@ -11,9 +11,16 @@
 @ set RUBY_PATH=%RBENV_VERSIONS%\%RUBY_VERSION%
 @ if not exist "%RUBY_PATH%" goto RubyVersionNotManaged
 
+:: Check if we called a script and if it exists in the current Ruby
+@ if exist "%RBENV_SHIMS%\%~n1.cmd" (
+	if not exist "%RUBY_PATH%\bin\%~n1" goto ScriptNotInThisRubyVersion
+)
+
 :: Compute how to call Ruby
 @ if "%RUBY_VERSION:~0,5%" == "jruby" (
-	if exist "%RUBY_PATH%\bin\%~n1" (
+	if "%~1" == "jruby" (
+		set COMMAND=%*
+	) else if exist "%RUBY_PATH%\bin\%~n1" (
 		set COMMAND=jruby -S %*
 	) else (
 		set COMMAND=jruby %*
@@ -47,4 +54,8 @@
 
 :RubyVersionNotManaged
 @ echo(Ruby %RUBY_VERSION% is not a version managed by rbenv.
+@ exit /b 1
+
+:ScriptNotInThisRubyVersion
+@ echo(Ruby %RUBY_VERSION% does not contain a script '%~n1'
 @ exit /b 1
