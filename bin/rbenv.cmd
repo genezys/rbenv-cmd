@@ -10,7 +10,6 @@
 )
 
 @ set RBENV_ROOT=%~dp0..
-@ set RBENV_VERSIONS=%RBENV_ROOT%\versions\all.txt
 
 @ if not defined COMMAND goto Usage
 

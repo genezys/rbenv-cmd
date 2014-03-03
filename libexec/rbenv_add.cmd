@@ -18,13 +18,11 @@
 @ echo Detected Ruby version "%RUBY_VERSION%"
 
 :: Check that version is not already managed
-@ if exist "%RBENV_VERSIONS%" (
-	findstr /b "%RUBY_VERSION%|" "%RBENV_VERSIONS%" > NUL && goto AlreadyAdded
-)
+@ if exist "%RBENV_VERSIONS%\%RUBY_VERSION%" goto AlreadyAdded
 
 :: Add version to rbenv
-@ echo %RUBY_VERSION%^|%RUBY_PATH%>> "%RBENV_VERSIONS%"
-@ echo(Added "%RUBY_PATH%" as Ruby "%RUBY_VERSION%"
+@ mklink /d "%RBENV_VERSIONS%\%RUBY_VERSION%" "%RUBY_PATH%" > NUL
+@ echo(Added '%RUBY_PATH%' as Ruby %RUBY_VERSION%
 
 @ exit /b 0
 

@@ -4,11 +4,12 @@
 @ call "%~dp0common_vars.cmd"
 
 :: Retrieve current Ruby version
-@ for /f "usebackq tokens=*" %%i in (`%RBENV_ROOT%\libexec\rbenv_version.cmd`) do @ set RUBY_VERSION=%%i
+@ for /f "usebackq tokens=*" %%i in (`%RBENV_ROOT%\libexec\rbenv_version.cmd --bare`) do @ set RUBY_VERSION=%%i
 @ if not defined RUBY_VERSION goto RubyVersionNotFound
 
 :: Compute path of current RUBY_VERSION
-@ for /f "tokens=1,* delims=| usebackq" %%i in (`findstr /b "%RUBY_VERSION%|" "%RBENV_VERSIONS%"`) do @ set RUBY_PATH=%%j
+@ set RUBY_PATH=%RBENV_VERSIONS%\%RUBY_VERSION%
+@ if not exist "%RUBY_PATH%" goto RubyVersionNotManaged
 
 :: Compute how to call Ruby
 @ if "%RUBY_VERSION:~0,5%" == "jruby" (
@@ -42,4 +43,8 @@
 
 :RubyVersionNotFound
 @ echo(rbenv cannot determine the Ruby version to use. There are no valid global version nor '.ruby-version' file.
+@ exit /b 1
+
+:RubyVersionNotManaged
+@ echo(Ruby %RUBY_VERSION% is not a version managed by rbenv.
 @ exit /b 1

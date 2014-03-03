@@ -7,8 +7,7 @@
 @ if not defined RUBY_VERSION goto Usage
 
 :: Check that version is already managed
-@ if not exist "%RBENV_VERSIONS%" goto NotFound
-@ findstr /b "%RUBY_VERSION%|" "%RBENV_VERSIONS%" > NUL || goto NotFound
+@ if not exist "%RBENV_VERSIONS%\%RUBY_VERSION%" goto NotFound
 
 :: Check that version is not global
 @ if exist "%RBENV_GLOBAL%" (
@@ -17,9 +16,7 @@
 )
 
 :: Remove version from rbenv
-@ findstr /v /b "%RUBY_VERSION%|" "%RBENV_VERSIONS%" > "%RBENV_VERSIONS%_"
-@ del "%RBENV_VERSIONS%"
-@ rename "%RBENV_VERSIONS%_" "all.txt"
+@ rmdir "%RBENV_VERSIONS%\%RUBY_VERSION%"
 @ echo(Removed "%RUBY_VERSION%"
 
 @ exit /b 0

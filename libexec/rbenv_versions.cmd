@@ -8,7 +8,7 @@
 @ for /f "usebackq tokens=*" %%i in (`call "%RBENV_ROOT%\libexec\rbenv_version.cmd" --bare`) do @ set RUBY_VERSION=%%i
 
 :: Check that version is not already managed
-@ for /f "tokens=1 delims=|" %%i in (%RBENV_VERSIONS%) do @(
+@ for /f "usebackq tokens=*" %%i in (`dir /b "%RBENV_VERSIONS%"`) do @(
 	if "%%i" == "%RUBY_VERSION%" (
 		echo( * %%i ^(%REASON%^)
 	) else (

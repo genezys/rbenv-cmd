@@ -9,8 +9,7 @@
 :WriteGlobalVersion
 
 :: Check that version is already managed
-@ if not exist "%RBENV_VERSIONS%" goto NotFound
-@ findstr /b "%RUBY_VERSION%|" "%RBENV_VERSIONS%" > NUL || goto NotFound
+@ if not exist "%RBENV_VERSIONS%\%RUBY_VERSION%" goto NotFound
 
 :: Save global version in rbenv configuration
 @ echo %RUBY_VERSION%> "%RBENV_GLOBAL%"
