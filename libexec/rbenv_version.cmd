@@ -27,8 +27,11 @@
 
 :RubyVersionNotFound
 :: Retrieve global version
-@ set /p RUBY_VERSION= < "%RBENV_GLOBAL%"
-@ set REASON=from global
+@ if exist "%RBENV_GLOBAL%" (
+	set /p RUBY_VERSION= < "%RBENV_GLOBAL%"
+	set REASON=from global
+)
+@ if not defined RUBY_VERSION goto :NoGlobalRuby
 
 
 :RubyVersionFound
@@ -50,3 +53,8 @@
 :NotFound
 @ echo(Ruby %RUBY_VERSION% is not a version managed by rbenv.
 @ exit /b 1
+
+:NoGlobalRuby
+@ echo(Ruby version could not be found. You should at least define a global version.
+@ exit /b 1
+
