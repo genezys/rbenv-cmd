@@ -28,6 +28,7 @@
 @ echo(
 @ echo(  add       Add a new version of Ruby to be managed by rbenv
 @ echo(  remove    Remove a version of Ruby already managed by rbenv
+@ echo(  register  Register an association to open all Ruby files with rbenv
 @ echo(  versions  List all versions managed by rbenv
 @ echo(  version   Show the current Ruby version used by rbenv
 @ echo(  global    Show or change the global Ruby version used by rbenv
