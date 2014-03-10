@@ -18,7 +18,9 @@
 
 :: Compute how to call Ruby
 @ if "%RUBY_VERSION:~0,5%" == "jruby" (
-	if "%~1" == "jruby" (
+	if "%~1" == "" (
+		set COMMAND=jruby
+	) else if "%~1" == "jruby" (
 		set COMMAND=%*
 	) else if exist "%RUBY_PATH%\bin\%~n1" (
 		set COMMAND=jruby -S %*
@@ -26,7 +28,9 @@
 		set COMMAND=jruby %*
 	)
 ) else (
-	if exist "%RUBY_PATH%\bin\%~n1" (
+	if "%~1" == "" (
+		set COMMAND=ruby %*
+	) else if exist "%RUBY_PATH%\bin\%~n1" (
 		set COMMAND=%*
 	) else (
 		set COMMAND=ruby %*
