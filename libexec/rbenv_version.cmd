@@ -11,17 +11,17 @@
 )
 
 :: Search for a .ruby-version file to specify the version of ruby to use
-@ set DIRECTORY=%CD%
+@ if not defined RBENV_SEARCH_DIR set RBENV_SEARCH_DIR=%CD%
 :SearchForRubyVersion
-@ if exist "%DIRECTORY%\.ruby-version" (
-	set /p RUBY_VERSION= < "%DIRECTORY%\.ruby-version"
-	set REASON=from %DIRECTORY%\.ruby-version
+@ if exist "%RBENV_SEARCH_DIR%\.ruby-version" (
+	set /p RUBY_VERSION= < "%RBENV_SEARCH_DIR%\.ruby-version"
+	set REASON=from %RBENV_SEARCH_DIR%\.ruby-version
 	goto RubyVersionFound
 ) else (
-	pushd "%DIRECTORY%\.."
-	set DIRECTORY=!CD!
+	pushd "%RBENV_SEARCH_DIR%\.."
+	set RBENV_SEARCH_DIR=!CD!
 	popd
-	if "%DIRECTORY:~1,-1%" == ":" goto RubyVersionNotFound
+	if "%RBENV_SEARCH_DIR:~1,-1%" == ":" goto RubyVersionNotFound
 	goto SearchForRubyVersion
 )
 
